@@ -27,7 +27,7 @@ namespace HashPayloadConsoleApp
             // Generate a new key pair
             using (ECDsa asymmetricAlgorithm = ECDsa.Create(ECCurve.NamedCurves.brainpoolP160r1))
             {
-                // Get the public and private key as byte arrays
+                // Get the public key as byte arrays
                 publicKeyParameters = asymmetricAlgorithm.ExportParameters(false);
 
                 // Convert the payload to a byte array
