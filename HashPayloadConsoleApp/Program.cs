@@ -71,14 +71,14 @@ namespace HashPayloadConsoleApp
 
         private static void VerifyHash(byte[] payloadBytes, string base64SignatureBytes, ECParameters parameters)
         {
-            using (var rsa = ECDsa.Create(parameters))
+            using (var asymmetricAlgorithm = ECDsa.Create(parameters))
             {
                 // Compute the hash of the payload
                 byte[] hashBytes = GetPayloadHash(payloadBytes);
 
                 // verify the signature using the public key
                 var signatureBytes = Convert.FromBase64String(base64SignatureBytes);
-                bool signaturevalid = rsa.VerifyHash(hashBytes, signatureBytes);
+                bool signaturevalid = asymmetricAlgorithm.VerifyHash(hashBytes, signatureBytes);
 
                 Console.WriteLine("signature is valid: {0}", signaturevalid);
                 Console.WriteLine();
